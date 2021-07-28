@@ -18,7 +18,8 @@ namespace ReflectionExample
         public static void Lookup()
         {
             Type type = typeof(ReflectionTest);
-            FieldInfo[] fields = type.GetFields();// type.GetFields(BindingFlags.Public | BindingFlags.NonPublic);
+            FieldInfo[] fields = type.GetFields(BindingFlags.Public | 
+                BindingFlags.NonPublic | BindingFlags.Static);
             foreach (var field in fields)
             {
                 string name = field.Name;
