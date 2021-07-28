@@ -54,6 +54,7 @@
     <Compile Include="JsonSerialization3.cs" />
     <Compile Include="JsonSerialization2.cs" />
     <Compile Include="JsonSerialization1.cs" />
+    <Compile Include="PerformanceCheck.cs" />
     <Compile Include="SoapSerialization.cs" />
     <Compile Include="XMLSerialization.cs" />
     <Compile Include="BinarySerialization.cs" />

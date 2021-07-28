@@ -16,7 +16,10 @@ namespace SerializationExample
             //JsonSerialization1.Create();
             //JsonSerialization2.Create();
             //JsonSerialization3.Create();
-            JsonSerialization3.ErrorHandle();
+            //JsonSerialization3.ErrorHandle();
+            //JsonSerialization3.MissingMembers();
+            //JsonSerialization3.NBP();
+            PerformanceCheck.Run();
         }
     }
 }

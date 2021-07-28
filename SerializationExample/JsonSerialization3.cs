@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization.Formatters.Soap;
 using System.Runtime.Serialization.Json;
@@ -72,6 +74,54 @@ namespace SerializationExample
             {
                 Console.WriteLine(item);
             }
+        }
+
+        class MyUsers
+        {
+            public String FName { get; set; }
+            public String LName { get; set; }
+        }
+        public static void MissingMembers()
+        {
+            String s = @"
+                { 'fname' : 'Elvis', 
+                  'lnaMe' : 'Presley', 'LNAME' : 'XYZ', 
+                  'IsAlive' : false  }
+            ";
+            MyUsers user = JsonConvert.DeserializeObject<MyUsers>(s, 
+                new JsonSerializerSettings { 
+                    MissingMemberHandling = MissingMemberHandling.Ignore
+                } );
+            Console.WriteLine(user.FName);
+        }
+
+        class Rates
+        {
+            [JsonProperty("currency")]
+            public string CurrencyName { get; set; }
+            
+            [JsonProperty("code")]
+            public string CurrencyCode { get; set; }
+            
+            [JsonProperty("mid")]
+            public double AverageRate { get; set; }
+        }
+
+        public static void NBP()
+        {
+            WebClient wb = new WebClient();
+            String s = wb.DownloadString("http://api.nbp.pl/api/exchangerates/tables/A/?format=json");
+            JArray ja = JArray.Parse(s);
+            IList<JToken> results = ja[0]["rates"].Children().ToList();
+
+            List<Rates> rates = new List<Rates>();
+            foreach (var item in results)
+            {
+                Rates rate = item.ToObject<Rates>();
+                rates.Add(rate);
+            }
+            
+
         }
 
     }
