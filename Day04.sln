@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationExample", "Ser
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServerClientExample", "ServerClientExample\ServerClientExample.csproj", "{41462DB5-E9CB-4732-A088-D08E42430E8F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReflectionExample", "ReflectionExample\ReflectionExample.csproj", "{E3E15445-06F0-4086-89EA-11FDCD02F6F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExternalLibrary", "ExternalLibrary\ExternalLibrary.csproj", "{00AFE1F6-23E7-4724-9E87-8633254B1477}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{41462DB5-E9CB-4732-A088-D08E42430E8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41462DB5-E9CB-4732-A088-D08E42430E8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41462DB5-E9CB-4732-A088-D08E42430E8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3E15445-06F0-4086-89EA-11FDCD02F6F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3E15445-06F0-4086-89EA-11FDCD02F6F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3E15445-06F0-4086-89EA-11FDCD02F6F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3E15445-06F0-4086-89EA-11FDCD02F6F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00AFE1F6-23E7-4724-9E87-8633254B1477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00AFE1F6-23E7-4724-9E87-8633254B1477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00AFE1F6-23E7-4724-9E87-8633254B1477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00AFE1F6-23E7-4724-9E87-8633254B1477}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
