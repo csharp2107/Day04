@@ -13,7 +13,7 @@ namespace SerializationExample
     {
         public static void Run()
         {
-            int MAX_ITEMS = 2000;
+            int MAX_ITEMS = 100000;
 
             List<Employee> empList = new List<Employee>();
             for (int i = 1; i <= MAX_ITEMS; i++)
@@ -49,13 +49,13 @@ namespace SerializationExample
             sw.Restart();
             using (FileStream fs = new FileStream(DEST_FILE, FileMode.Open))
             {
-                XmlSerializer xs = new XmlSerializer(typeof(Employee[]));
-                Employee[] emps = (Employee[])xs.Deserialize(fs);                
+                XmlSerializer xs = new XmlSerializer(typeof(List<Employee>));
+                List<Employee> emps = (List<Employee>)xs.Deserialize(fs);                
             }
             sw.Stop();
             Console.WriteLine($"Deserialization XML: {sw.ElapsedMilliseconds}");
 
-
+            Console.ReadKey();
 
 
         }
