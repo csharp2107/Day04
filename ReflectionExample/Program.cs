@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Pose;
 
 namespace ReflectionExample
 {
@@ -59,6 +60,16 @@ namespace ReflectionExample
             } 
         }
 
+        public class DemoClass
+        {
+            private readonly double constValue = 1.23456;
+
+            public double Show()
+            {
+                return constValue;
+            }
+        }
+
         static void CreateObject()
         {
             Type classType = typeof(ReflectionClass);
@@ -79,9 +90,53 @@ namespace ReflectionExample
 
             // change value for the property
             PropertyInfo property = classType.GetProperty("fieldB");
-            property.SetValue(reflectionClass, "1234567890");
+            property.SetValue(reflectionClass, "ABCDEFGHIJKL");
             string newValue = (string)property.GetValue(reflectionClass);
             Console.WriteLine(newValue);
+
+            // get information about method/s inside class
+            MethodInfo method = classType.GetMethod("MethodStr");
+            String result = (string)method.Invoke(reflectionClass, new object[0]);
+            Console.WriteLine(result);
+
+            method = classType.GetMethod("MethodInt");
+            Int32 x = (Int32)method.Invoke(reflectionClass, new object[] { 10 });
+            Console.WriteLine(x);
+
+            DemoClass dc = new DemoClass();
+            FieldInfo field = typeof(DemoClass).GetField("constValue", BindingFlags.NonPublic | BindingFlags.Instance);
+            if (field!=null)
+            {
+                field.SetValue(dc, -9.8765);
+                Console.WriteLine(dc.Show());
+            }
+
+            Shim consoleShim = Shim.Replace(
+                () => Console.WriteLine(Is.A<string>())).With(
+                        delegate(string s)
+                        {
+                            Console.WriteLine($"My text: {s}");
+                        }
+                );
+
+            Shim methodShim = Shim.Replace(
+                () => dc.Show()).With(
+                    delegate(DemoClass @this)
+                    {
+                        return 111.111;
+                    }
+                );
+
+            PoseContext.Isolate(
+                () =>
+                {
+                    Console.WriteLine("ABCDEF");
+                    Console.WriteLine(dc.Show().ToString());
+                }, consoleShim, methodShim
+            );
+
+            Console.ReadKey();
+
         }
     }
 }
